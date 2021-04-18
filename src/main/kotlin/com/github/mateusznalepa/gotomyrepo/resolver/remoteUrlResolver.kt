@@ -21,7 +21,7 @@ object GitHubUrlResolver : RemoteUrlResolver {
                     remoteUrlResolverParams.pathFromRepositoryRoot
 
         return if (remoteUrlResolverParams.lineNumber != null) {
-            "$resolvedUrl#L$${remoteUrlResolverParams.lineNumber}"
+            "$resolvedUrl#L${remoteUrlResolverParams.lineNumber}"
         } else {
             resolvedUrl
         }
