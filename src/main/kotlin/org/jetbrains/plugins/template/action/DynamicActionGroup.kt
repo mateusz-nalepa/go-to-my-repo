@@ -8,7 +8,7 @@ import icons.SdkIcons
 class DynamicActionGroup : ActionGroup() {
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
         return arrayOf(PopupDialogAction(
-            "Action Added at Runtime",
+            "Copy remote url location",
             "Dynamic Action Demo",
             SdkIcons.Sdk_default_icon)
         )
