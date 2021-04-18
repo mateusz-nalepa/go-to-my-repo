@@ -1,8 +1,7 @@
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-<!--    <name>Template</name>-->
-    <name>SDK: Action Sample</name>
-    <vendor>JetBrains</vendor>
+    <id>com.github.mateusznalepa.gotomyrepo</id>
+    <name>go-to-my-repo</name>
+    <vendor>mateusz-nalepa</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -10,12 +9,12 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
-        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.mateusznalepa.gotomyrepo.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.mateusznalepa.gotomyrepo.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
+        <listener class="com.github.mateusznalepa.gotomyrepo.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
