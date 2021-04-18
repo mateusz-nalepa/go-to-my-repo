@@ -9,9 +9,14 @@ class DynamicActionGroup : ActionGroup() {
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
         return arrayOf(
             PopupDialogAction(
-            "Copy remote url location",
-            "Dynamic Action Demo",
-            SdkIcons.Sdk_default_icon)
+                "Copy remote url location",
+                "Dynamic Action Demo",
+                SdkIcons.Sdk_default_icon
+            ), PopupDialogAction(
+                "Copy remote url location",
+                "Dynamic Action Demo",
+                SdkIcons.Sdk_default_icon
+            )
         )
     }
 }
