@@ -2,7 +2,9 @@ package com.github.mateusznalepa.gotomyrepo.resolver
 
 data class RemoteUrlResolverParams(
     val pushUrl: String,
-    val repositoryRootPath: String,
+    val currentBranchName: String,
+    val currentBranchRevision: String,
+    val pathFromRepositoryRoot: String,
     val lineNumber: Int?
 )
 
@@ -15,7 +17,8 @@ object GitHubUrlResolver : RemoteUrlResolver {
         val resolvedUrl =
             remoteUrlResolverParams.pushUrl.substring(0, remoteUrlResolverParams.pushUrl.length - 4) +
                     "/blob" +
-                    "/${resolveCurrentBranch()}${remoteUrlResolverParams.repositoryRootPath}"
+                    "/${remoteUrlResolverParams.currentBranchName}" +
+                    remoteUrlResolverParams.pathFromRepositoryRoot
 
         return if (remoteUrlResolverParams.lineNumber != null) {
             "$resolvedUrl#L$${remoteUrlResolverParams.lineNumber}"
@@ -23,28 +26,22 @@ object GitHubUrlResolver : RemoteUrlResolver {
             resolvedUrl
         }
     }
-
-    private fun resolveCurrentBranch(): String {
-        return "main"
-    }
 }
 
 object BitBucketUrlResolver : RemoteUrlResolver {
     override fun resolveUrl(remoteUrlResolverParams: RemoteUrlResolverParams): String {
-//        val resolvedUrl =
-//            remoteUrlResolverParams.pushUrl.substring(0, remoteUrlResolverParams.pushUrl.length - 4) +
-//                    "/blob" +
-//                    "/${resolveCurrentBranch()}${remoteUrlResolverParams.repositoryRootPath}"
-//
-//        return if (remoteUrlResolverParams.lineNumber != null) {
-//            "$resolvedUrl#L$${remoteUrlResolverParams.lineNumber}"
-//        } else {
-//            resolvedUrl
-//        }
-        return "bitbucket XDDDDDDDDDDDDDDDDD"
+        val pushUrl = remoteUrlResolverParams.pushUrl
+        val init = pushUrl.substring(pushUrl.indexOf("@") + 1)
+        val resolvedUrl =
+            "https://${init.substring(0, init.length - 4)}" +
+                    "/src" +
+                    "/${remoteUrlResolverParams.currentBranchRevision}" + remoteUrlResolverParams.pathFromRepositoryRoot
+
+        return if (remoteUrlResolverParams.lineNumber != null) {
+            "$resolvedUrl#lines-${remoteUrlResolverParams.lineNumber}"
+        } else {
+            resolvedUrl
+        }
     }
 
-    private fun resolveCurrentBranch(): String {
-        return "main"
-    }
 }

@@ -9,6 +9,7 @@ import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.project.Project
 import com.intellij.util.ui.TextTransferable
 import git4idea.GitUtil
+import git4idea.repo.GitRepository
 import git4idea.repo.GitRepositoryManager
 
 class CopyRemoteLocationResolver(
@@ -24,29 +25,27 @@ class CopyRemoteLocationResolver(
     )
 
     fun copyRemoteFileLocationToClipboard() {
-        resolvePushUrl()
-            .let { resolveFullPathRemoteLocation(it) }
+        resolveFullPathRemoteLocation()
             .also { addValueToClipboard(it) }
             .also { notifyUser() }
     }
 
-    private fun resolvePushUrl(): String {
-        return GitRepositoryManager
-            .getInstance(project)
-            .repositories[0]
-            .remotes
-            .first()
-            .pushUrls
-            .first()
-    }
-
-    private fun resolveFullPathRemoteLocation(pushUrl: String): String {
+    private fun resolveFullPathRemoteLocation(): String {
+        val gitRepository = gitRepository()
         val params = RemoteUrlResolverParams(
-            pushUrl = pushUrl,
-            repositoryRootPath = resolveRepositoryRootPath(),
+            pushUrl = gitRepository.remotes.first().pushUrls.first(),
+            currentBranchName = gitRepository.currentBranchName!!,
+            currentBranchRevision = gitRepository.currentRevision!!,
+            pathFromRepositoryRoot = resolveRepositoryRootPath(),
             lineNumber = resolveLineNumber()
         )
         return resolveUrlFunction.invoke(params)
+    }
+
+    private fun gitRepository(): GitRepository {
+        return GitRepositoryManager
+            .getInstance(project)
+            .repositories[0]
     }
 
     private fun resolveRepositoryRootPath(): String {
