@@ -1,20 +1,47 @@
 package com.github.mateusznalepa.gotomyrepo.resolver
 
+data class RemoteUrlResolverParams(
+    val pushUrl: String,
+    val repositoryRootPath: String,
+    val lineNumber: Int?
+)
+
 interface RemoteUrlResolver {
-    fun resolveUrl(pushUrl: String, repositoryRootPath: String, resolveLineNumber: Int?): String
+    fun resolveUrl(remoteUrlResolverParams: RemoteUrlResolverParams): String
 }
 
 object GitHubUrlResolver : RemoteUrlResolver {
-    override fun resolveUrl(pushUrl: String, repositoryRootPath: String, lineNumber: Int?): String {
+    override fun resolveUrl(remoteUrlResolverParams: RemoteUrlResolverParams): String {
         val resolvedUrl =
-            "${pushUrl.substring(0, pushUrl.length - 4)}/blob/${resolveCurrentBranch()}$repositoryRootPath"
+            remoteUrlResolverParams.pushUrl.substring(0, remoteUrlResolverParams.pushUrl.length - 4) +
+                    "/blob" +
+                    "/${resolveCurrentBranch()}${remoteUrlResolverParams.repositoryRootPath}"
 
-        return if (lineNumber != null) {
-            "$resolvedUrl#L$lineNumber"
+        return if (remoteUrlResolverParams.lineNumber != null) {
+            "$resolvedUrl#L$${remoteUrlResolverParams.lineNumber}"
         } else {
             resolvedUrl
         }
-//       https://github.com/mateusz-nalepa/hello-world/blob/main/src/HelloWorld.java
+    }
+
+    private fun resolveCurrentBranch(): String {
+        return "main"
+    }
+}
+
+object BitBucketUrlResolver : RemoteUrlResolver {
+    override fun resolveUrl(remoteUrlResolverParams: RemoteUrlResolverParams): String {
+//        val resolvedUrl =
+//            remoteUrlResolverParams.pushUrl.substring(0, remoteUrlResolverParams.pushUrl.length - 4) +
+//                    "/blob" +
+//                    "/${resolveCurrentBranch()}${remoteUrlResolverParams.repositoryRootPath}"
+//
+//        return if (remoteUrlResolverParams.lineNumber != null) {
+//            "$resolvedUrl#L$${remoteUrlResolverParams.lineNumber}"
+//        } else {
+//            resolvedUrl
+//        }
+        return "bitbucket XDDDDDDDDDDDDDDDDD"
     }
 
     private fun resolveCurrentBranch(): String {

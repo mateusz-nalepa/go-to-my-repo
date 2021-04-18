@@ -33,15 +33,26 @@
           element and see how the menu text changes.) The alternate text and description attributes do not
           appear here because they are defined by action-id in the resource-bundle.
         -->
-        <action id="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
-                class="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
-                text="Copy Remote Location"
+        <action id="com.github.mateusznalepa.gotomyrepo.action.GitHubCopeRemoteLocationPopupAction"
+                class="com.github.mateusznalepa.gotomyrepo.action.GitHubCopeRemoteLocationPopupAction"
+                text="Copy Remote Location Using GitHub Style"
                 description="SDK action example"
-                icon="SdkIcons.Sdk_default_icon">
+                icon="SdkIcons.Github_Icon">
             <!--            <add-to-group group-id="ToolsMenu" anchor="first"/>-->
             <!--            <override-text place="MainMenu" text="Pop Dialog Action"/>-->
-            <keyboard-shortcut first-keystroke="control alt A" second-keystroke="C" keymap="$default"/>
-            <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>
+            <!--            <keyboard-shortcut first-keystroke="control alt A" second-keystroke="C" keymap="$default"/>-->
+            <!--            <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>-->
+        </action>
+
+        <action id="com.github.mateusznalepa.gotomyrepo.action.BitBucketCopeRemoteLocationPopupAction"
+                class="com.github.mateusznalepa.gotomyrepo.action.BitBucketCopeRemoteLocationPopupAction"
+                text="Copy Remote Location Using BitBucket Style"
+                description="SDK action example"
+                icon="SdkIcons.BitBucket_Icon">
+            <!--            <add-to-group group-id="ToolsMenu" anchor="first"/>-->
+            <!--            <override-text place="MainMenu" text="Pop Dialog Action"/>-->
+            <!--            <keyboard-shortcut first-keystroke="control alt A" second-keystroke="C" keymap="$default"/>-->
+            <!--            <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>-->
         </action>
         <!--
           All of the following menu groups add the action PopupDialogAction to menus in different ways.
@@ -81,11 +92,11 @@
             <add-to-group group-id="EditorPopupMenu"
                           anchor="first"/>
             <action id="copyUsingGithubStyle"
-                    class="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
+                    class="com.github.mateusznalepa.gotomyrepo.action.GitHubCopeRemoteLocationPopupAction"
                     text="Using GitHub Style"
                     icon="SdkIcons.Github_Icon"/>
             <action id="copyUsingBitBucketStyle"
-                    class="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
+                    class="com.github.mateusznalepa.gotomyrepo.action.BitBucketCopeRemoteLocationPopupAction"
                     text="Using BitBucket Style"
                     icon="SdkIcons.BitBucket_Icon"/>
             <!--            <keyboard-shortcut first-keystroke="control alt A" second-keystroke="C" keymap="$default"/>-->

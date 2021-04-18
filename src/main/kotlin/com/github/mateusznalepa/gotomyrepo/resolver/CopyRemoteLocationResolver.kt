@@ -11,9 +11,10 @@ import com.intellij.util.ui.TextTransferable
 import git4idea.GitUtil
 import git4idea.repo.GitRepositoryManager
 
-class HodorRepoXD(
+class CopyRemoteLocationResolver(
     private val project: Project,
-    private val event: AnActionEvent
+    private val event: AnActionEvent,
+    private val resolveUrlFunction: (RemoteUrlResolverParams) -> String
 ) {
 
     private val notificationGroup = NotificationGroup(
@@ -40,7 +41,12 @@ class HodorRepoXD(
     }
 
     private fun resolveFullPathRemoteLocation(pushUrl: String): String {
-        return GitHubUrlResolver.resolveUrl(pushUrl, resolveRepositoryRootPath(), resolveLineNumber())
+        val params = RemoteUrlResolverParams(
+            pushUrl = pushUrl,
+            repositoryRootPath = resolveRepositoryRootPath(),
+            lineNumber = resolveLineNumber()
+        )
+        return resolveUrlFunction.invoke(params)
     }
 
     private fun resolveRepositoryRootPath(): String {
@@ -62,7 +68,11 @@ class HodorRepoXD(
     }
 
     private fun notifyUser() {
-        notificationGroup.createNotification("Remote location copied to clipboard", NotificationType.INFORMATION)
+        notificationGroup
+            .createNotification(
+                content = "Remote location copied to clipboard",
+                type = NotificationType.INFORMATION
+            )
             .notify(project)
     }
 }
