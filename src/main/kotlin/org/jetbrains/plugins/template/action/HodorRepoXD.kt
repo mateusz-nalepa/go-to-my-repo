@@ -41,7 +41,7 @@ class HodorRepoXD(
     }
 
     private fun resolveFullPathRemoteLocation(pushUrl: String): String {
-        return GitHubUrlResolver.resolveUrl(pushUrl, resolveRepositoryRootPath())
+        return GitHubUrlResolver.resolveUrl(pushUrl, resolveRepositoryRootPath(), resolveLineNumber())
     }
 
     private fun resolveRepositoryRootPath(): String {
@@ -50,6 +50,10 @@ class HodorRepoXD(
         val actualFilePath = virtualFile.path
 
         return actualFilePath.substring(gitRootPath.length)
+    }
+
+    private fun resolveLineNumber(): Int {
+        return event.getRequiredData(CommonDataKeys.EDITOR).caretModel.logicalPosition.line + 1
     }
 
     private fun addValueToClipboard(value: String) {
