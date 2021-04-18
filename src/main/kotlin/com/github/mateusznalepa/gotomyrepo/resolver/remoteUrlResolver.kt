@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.resolver
+package com.github.mateusznalepa.gotomyrepo.resolver
 
 interface RemoteUrlResolver {
     fun resolveUrl(pushUrl: String, repositoryRootPath: String, resolveLineNumber: Int?): String

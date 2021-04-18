@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.action
+package com.github.mateusznalepa.gotomyrepo.action
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys

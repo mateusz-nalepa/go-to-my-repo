@@ -1,5 +1,6 @@
-package org.jetbrains.plugins.template.action
+package com.github.mateusznalepa.gotomyrepo.action
 
+import com.github.mateusznalepa.gotomyrepo.resolver.HodorRepoXD
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys

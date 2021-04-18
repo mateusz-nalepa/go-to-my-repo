@@ -31,8 +31,8 @@
           element and see how the menu text changes.) The alternate text and description attributes do not
           appear here because they are defined by action-id in the resource-bundle.
         -->
-        <action id="org.jetbrains.plugins.template.action.PopupDialogAction"
-                class="org.jetbrains.plugins.template.action.PopupDialogAction"
+        <action id="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
+                class="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
                 text="Action Basics Plugin: Pop Dialog Action" description="SDK action example"
                 icon="SdkIcons.Sdk_default_icon">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
@@ -54,8 +54,8 @@
                text="Static Grouped Actions" description="SDK statically grouped action example"
                popup="true" icon="SdkIcons.Sdk_default_icon">
             <add-to-group group-id="ToolsMenu" anchor="after"
-                          relative-to-action="org.jetbrains.plugins.template.action.PopupDialogAction"/>
-            <action id="org.intellij.sdk.action.GroupPopDialogAction" class="org.jetbrains.plugins.template.action.PopupDialogAction"
+                          relative-to-action="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"/>
+            <action id="org.intellij.sdk.action.GroupPopDialogAction" class="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
                     text="A Group Action" description="SDK static grouped action example"
                     icon="SdkIcons.Sdk_default_icon">
             </action>
@@ -66,19 +66,19 @@
           The group and action implementations are internationalized, so their declarations do not use the text or
           description attributes. Instead, the information is defined in the BasicActionsBundle.
         -->
-        <group id="org.jetbrains.plugins.template.action.CustomDefaultActionGroup"
-               class="org.jetbrains.plugins.template.action.CustomDefaultActionGroup"
+        <group id="com.github.mateusznalepa.gotomyrepo.action.CustomDefaultActionGroup"
+               class="com.github.mateusznalepa.gotomyrepo.action.CustomDefaultActionGroup"
                popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-            <action id="org.intellij.sdk.action.CustomGroupedAction" class="org.jetbrains.plugins.template.action.PopupDialogAction"
+            <action id="org.intellij.sdk.action.CustomGroupedAction" class="com.github.mateusznalepa.gotomyrepo.action.PopupDialogAction"
                     icon="SdkIcons.Sdk_default_icon"/>
         </group>
         <!--
           DynamicActionGroup demonstrates declaring an action group without a static action declaration.
           An action is added to the group programmatically in the DynamicActionGroup implementation.
         -->
-        <group id="org.jetbrains.plugins.template.action.DynamicActionGroup"
-               class="org.jetbrains.plugins.template.action.DynamicActionGroup"
+        <group id="com.github.mateusznalepa.gotomyrepo.action.DynamicActionGroup"
+               class="com.github.mateusznalepa.gotomyrepo.action.DynamicActionGroup"
                popup="true" text="Dynamically Grouped Actions" description="SDK dynamically grouped action example"
                icon="SdkIcons.Sdk_default_icon">
             <add-to-group group-id="ToolsMenu" anchor="after"

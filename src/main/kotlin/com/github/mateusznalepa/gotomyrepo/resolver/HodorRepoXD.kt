@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.action
+package com.github.mateusznalepa.gotomyrepo.resolver
 
 import com.intellij.notification.NotificationDisplayType
 import com.intellij.notification.NotificationGroup
@@ -10,7 +10,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.util.ui.TextTransferable
 import git4idea.GitUtil
 import git4idea.repo.GitRepositoryManager
-import org.jetbrains.plugins.template.resolver.GitHubUrlResolver
 
 class HodorRepoXD(
     private val project: Project,

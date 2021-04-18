@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.action
+package com.github.mateusznalepa.gotomyrepo.action
 
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
@@ -7,7 +7,8 @@ import icons.SdkIcons
 
 class DynamicActionGroup : ActionGroup() {
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
-        return arrayOf(PopupDialogAction(
+        return arrayOf(
+            PopupDialogAction(
             "Copy remote url location",
             "Dynamic Action Demo",
             SdkIcons.Sdk_default_icon)
