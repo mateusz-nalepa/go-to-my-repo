@@ -1,5 +1,8 @@
 package com.github.mateusznalepa.gotomyrepo.resolver
 
+const val FOUR = 4
+
+@Suppress("ParameterListWrapping")
 data class RemoteUrlResolverParams(
     val pushUrl: String,
     val currentBranchName: String,
@@ -15,10 +18,10 @@ interface RemoteUrlResolver {
 object GitHubUrlResolver : RemoteUrlResolver {
     override fun resolveUrl(remoteUrlResolverParams: RemoteUrlResolverParams): String {
         val resolvedUrl =
-            remoteUrlResolverParams.pushUrl.substring(0, remoteUrlResolverParams.pushUrl.length - 4) +
-                    "/blob" +
-                    "/${remoteUrlResolverParams.currentBranchName}" +
-                    remoteUrlResolverParams.pathFromRepositoryRoot
+            remoteUrlResolverParams.pushUrl.substring(0, remoteUrlResolverParams.pushUrl.length - FOUR) +
+                "/blob" +
+                "/${remoteUrlResolverParams.currentBranchName}" +
+                remoteUrlResolverParams.pathFromRepositoryRoot
 
         return if (remoteUrlResolverParams.lineNumber != null) {
             "$resolvedUrl#L${remoteUrlResolverParams.lineNumber}"
@@ -33,9 +36,9 @@ object BitBucketUrlResolver : RemoteUrlResolver {
         val pushUrl = remoteUrlResolverParams.pushUrl
         val init = pushUrl.substring(pushUrl.indexOf("@") + 1)
         val resolvedUrl =
-            "https://${init.substring(0, init.length - 4)}" +
-                    "/src" +
-                    "/${remoteUrlResolverParams.currentBranchRevision}" + remoteUrlResolverParams.pathFromRepositoryRoot
+            "https://${init.substring(0, init.length - FOUR)}" +
+                "/src" +
+                "/${remoteUrlResolverParams.currentBranchRevision}" + remoteUrlResolverParams.pathFromRepositoryRoot
 
         return if (remoteUrlResolverParams.lineNumber != null) {
             "$resolvedUrl#lines-${remoteUrlResolverParams.lineNumber}"
@@ -43,5 +46,4 @@ object BitBucketUrlResolver : RemoteUrlResolver {
             resolvedUrl
         }
     }
-
 }

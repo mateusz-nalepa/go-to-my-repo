@@ -20,5 +20,4 @@ class GitHubCopeRemoteLocationPopupAction : AnAction() {
         val project = e.project
         e.presentation.isEnabledAndVisible = project != null
     }
-
 }

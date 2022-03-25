@@ -5,7 +5,6 @@ import com.github.mateusznalepa.gotomyrepo.resolver.CopyRemoteLocationResolver
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 
-
 class BitBucketCopeRemoteLocationPopupAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
@@ -21,5 +20,4 @@ class BitBucketCopeRemoteLocationPopupAction : AnAction() {
         val project = e.project
         e.presentation.isEnabledAndVisible = project != null
     }
-
 }

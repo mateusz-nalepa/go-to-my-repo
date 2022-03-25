@@ -8,5 +8,4 @@ class CustomDefaultActionGroup : DefaultActionGroup() {
     override fun update(event: AnActionEvent) {
         event.presentation.isEnabled = true
     }
-
 }
